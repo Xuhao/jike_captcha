@@ -1,6 +1,6 @@
 require "jike_captcha/version"
 
-module JikeApi
+module Jike
   module Captcha
     # Your code goes here...
   end
