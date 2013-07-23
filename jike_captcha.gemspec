@@ -5,7 +5,7 @@ require 'jike_captcha/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "jike_captcha"
-  spec.version       = JikeApi::Captcha::VERSION
+  spec.version       = Jike::Captcha::VERSION
   spec.authors       = ["Xuhao"]
   spec.email         = ["xuhao@rubyfans.com"]
   spec.description   = %q{TODO: Write a gem description}
