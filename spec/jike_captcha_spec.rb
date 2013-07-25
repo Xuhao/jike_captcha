@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe JikeCaptcha do
+describe Jike::Captcha do
   it 'should have a version number' do
-    JikeCaptcha::VERSION.should_not be_nil
+    Jike::Captcha::VERSION.should_not be_nil
   end
 end
