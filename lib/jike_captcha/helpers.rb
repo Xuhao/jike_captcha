@@ -1,5 +1,4 @@
 require 'httparty'
-require 'open-uri'
 require 'active_support/json/decoding'
 require 'active_support/core_ext/object/to_param'
 require 'active_support/core_ext/object/to_query'
