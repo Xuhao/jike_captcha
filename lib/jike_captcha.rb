@@ -23,3 +23,4 @@ module Jike
 end
 
 require 'jike_captcha/helpers'
+require 'jike_captcha/validation'
