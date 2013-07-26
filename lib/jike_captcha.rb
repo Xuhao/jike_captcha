@@ -1,4 +1,5 @@
 require "jike_captcha/version"
+require 'jike_captcha/engine' if Module.const_defined?('Rails')
 
 module Jike
   module Captcha
