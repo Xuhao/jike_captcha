@@ -41,21 +41,48 @@ config.jike_app_key = '<your_app_key>'
 
 JikeCaptcha provide some helpers to render the captcha input box, captcha image and others.
 
-#####captcha_tag
+##### captcha_tag
 
 The most useful helper is `captcha_tag`, it will render all the necessary tags.
-  
+
+*args:*
+
+* `:wrapper_html`: options for wrapper tag
+  * `:tag`: control wrapper tag type
+* `:input_html`: options for captcha text filed tag
+* `:image_html`: options for captcha img tag
+  * `:src_type`: control image url type. if set to `:data_url`, will render img src as base64 encode
+  * `:update`: if set to true, captcha can be update be ajax, if set to a hash, value for `:text` key in that has will used for update link content.
+
+All the options in below are default value, except `args[:image_html][:src_type]`, it's default value is nil.
+
 ```ruby
-captcha_tag wrapper_html: {tag: :span, class: :captcha_field}, input_html: {class: :my_captcha_input}, image_html: {src_type: :data_url, update: { text: 'change a new one'}, id: :my_captcha_image}
+captcha_tag wrapper_html: {
+              tag: :div,
+              id: 'jike_captcha_wrapper',
+              class: 'jike_captcha_wrapper'
+            },
+            input_html: {
+              id: 'jike_captcha_input',
+              class: 'jike_captcha_input',
+              name: 'jike_captcha_value'
+            },
+            image_html: {
+              src_type: :data_url,
+              update: { text: 'change a new one' },
+              id: 'jike_captcha_image',
+              class: 'jike_captcha_image'
+            }
 ```
+
 render:
 
 ```html
-<span id="jike_captcha_wrapper" class="captcha_field">
-  <input type="text" name="jike_captcha_value" id="jike_captcha_input" class="my_captcha_input">
-  <img style="cursor: pointer;" src="data:image/png;base64,iVB..." id="my_captcha_image" data-src-type="data_url" class="jike_captcha_image">
-  <input type="hidden" value="4eef9e57d4b0b6571f7474641eb19193" name="jike_captcha_id" id="jike_captcha_id" class="jike_captcha_id">
-  <a id="jike_captcha_update_link" href="javascript: void(0);">change a new one</a>
+<div class="jike_captcha_wrapper" id="jike_captcha_wrapper">
+  <input class="jike_captcha_input" id="jike_captcha_input" name="jike_captcha_value" type="text" />
+  <img class="jike_captcha_image" data-src-type="data_url" id="jike_captcha_image" src="data:image/png;base64,iVBO......" style="cursor: pointer;" />
+  <input class="jike_captcha_id" id="jike_captcha_id" name="jike_captcha_id" type="hidden" value="..." />
+  <a href="javascript: void(0);" id="jike_captcha_update_link">change a new one</a>
   <script type="text/javascript">
     //<![CDATA[
       $(function(){
@@ -75,6 +102,29 @@ render:
     //]]>
   </script>
 </div>
+```
+
+##### captcha_image_tag
+
+*args:*
+
+  Same as `:image_html` in `captcha_tag` helper
+
+This helper will render the captcha image.
+
+```ruby
+captcha_image_tag(
+              src_type: :data_url,
+              update: { text: 'change a new one' },
+              id: 'jike_captcha_image',
+              class: 'jike_captcha_image')
+```
+
+render:
+
+```html
+<img class="jike_captcha_image" data-src-type="data_url" id="jike_captcha_image" src="data:image/png;base64,iVBO..." style="cursor: pointer;" />
+<input class="jike_captcha_id" id="jike_captcha_id" name="jike_captcha_id" type="hidden" value="c7d0973696516dc43acdeffa4baa382c" />
 ```
 
 ## Contributing
