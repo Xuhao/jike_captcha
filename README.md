@@ -1,5 +1,8 @@
 # JikeCaptcha
 
+[![Build Status](https://travis-ci.org/Xuhao/jike_captcha.png?branch=master)](https://travis-ci.org/Xuhao/jike_captcha)
+[![Code Climate](https://codeclimate.com/github/Xuhao/jike_captcha.png)](https://codeclimate.com/github/Xuhao/jike_captcha)
+
 Captcha form [Jike API][jike_api_site], It's very simple but it's light weight and very fast. No need generate captcha image locally, so you need not install any software for it, such as ImageMagick. It get captcha form a fast and stable service clusters. It's good choice for Captcha, try it!
 
 ## Installation
@@ -37,7 +40,7 @@ Two: set app_key in config/application.rb:
 config.jike_app_key = '<your_app_key>'
 ```
 
-#### 2. Put captcha tag in you form
+#### 2. Put captcha tag in your form
 
 ```erb
 <%= form_for :post do |f| %>
