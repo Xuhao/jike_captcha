@@ -25,19 +25,20 @@ module Jike
       end
 
       # Validate the input value by a captcha_id
-      # It's usefull to custom the captcha_tag to pass the captcha value/id with different param
+      # It's usefull to custom the captcha_tag to pass the captcha value with different param
       #
       # Example:
       #   class UsersController < ApplicationController
       #     def create
-      #       if captcha_validate(params[:captcha_value], params[:captcha_id])
+      #       if captcha_validate(params[:captcha_value])
       #         User.create(params[:user])
       #       else
       #         redirect_to :new, notice: 'Captcha is not correct!'
       #       end
       #     end
       #   end
-      def captcha_validate(input_value, captcha_id)
+      def captcha_validate(input_value, captcha_id=nil)
+        captcha_id ||= self.respond_to?(:params) && params[:jike_captcha_id]
         return false if input_value.blank? or captcha_id.blank?
         response = Jike::Captcha::Helpers.send(:get_hash, validate_url(input_value, captcha_id))
         !!response['data']
