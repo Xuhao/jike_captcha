@@ -1,6 +1,6 @@
 # JikeCaptcha
 
-Captcha form [jike API][jike_api_site], It's very simple but it's light weight and very fast. No need generate captcha image locally, so you need not install any software for it, such as ImageMagick. It get captcha form a fast and stable service clusters. It's good choice for Captcha, try it!
+Captcha form [Jike API][jike_api_site], It's very simple but it's light weight and very fast. No need generate captcha image locally, so you need not install any software for it, such as ImageMagick. It get captcha form a fast and stable service clusters. It's good choice for Captcha, try it!
 
 ## Installation
 
@@ -39,7 +39,12 @@ config.jike_app_key = '<your_app_key>'
 
 #### 2. Put captcha tag in you form
 
-JikeCaptcha provide some helpers to render the captcha input box, captcha image and others.
+```erb
+<%= form_for :post do |f| %>
+  <%= captcha_tag %>
+  <%= f.submit %>
+<% end %>
+```
 
 ##### captcha_tag
 
@@ -54,7 +59,7 @@ The most useful helper is `captcha_tag`, it will render all the necessary tags.
   * `:src_type`: control image url type. if set to `:data_url`, will render img src as base64 encode
   * `:update`: if set to true, captcha can be update be ajax, if set to a hash, value for `:text` key in that has will used for update link content.
 
-All the options in below are default value, except `args[:image_html][:src_type]`, it's default value is nil.
+All the options at below are default value, except `args[:image_html][:src_type]`, its default value is nil.
 
 ```ruby
 captcha_tag wrapper_html: {
@@ -104,27 +109,46 @@ render:
 </div>
 ```
 
-##### captcha_image_tag
+#### 3. Validate captcha in controller
 
-*args:*
-
-  Same as `:image_html` in `captcha_tag` helper
-
-This helper will render the captcha image.
+Submit captcha value form your form, then you can validate it in your controller use `captcha_valid?` method. It's very simple to do that.
 
 ```ruby
-captcha_image_tag(
-              src_type: :data_url,
-              update: { text: 'change a new one' },
-              id: 'jike_captcha_image',
-              class: 'jike_captcha_image')
+class UsersController < ApplicationController
+  def create
+    if captcha_valid? # Same as Jike::Captcha::Validation.captcha_valid?(params)
+      User.create(params[:user])
+    else
+      redirect_to :new, notice: 'Captcha is not correct!'
+    end
+  end
+end
 ```
 
-render:
+As default, captcha value should submited by `params[:jike_captcha_value]`, another value is `params[:jike_captcha_id]`, it's generate by `captcha_tag` helper automatically.
 
-```html
-<img class="jike_captcha_image" data-src-type="data_url" id="jike_captcha_image" src="data:image/png;base64,iVBO..." style="cursor: pointer;" />
-<input class="jike_captcha_id" id="jike_captcha_id" name="jike_captcha_id" type="hidden" value="c7d0973696516dc43acdeffa4baa382c" />
+<b>Custom captcha value param in your form</b>
+
+You can use any param key to submit captcha value, as below:
+
+```erb
+<%= captcha_tag input_html: { name: 'my_captcha_value' } %>
+```
+
+The captcha value will submited by `params[:my_captcha_value]`. But you can't custom another value `params[:jike_captcha_id]`.
+
+then validate in your controller like this:
+
+```ruby
+class UsersController < ApplicationController
+  def create
+    if captcha_validate(params[:my_captcha_value])
+      User.create(params[:user])
+    else
+      redirect_to :new, notice: 'Captcha is not correct!'
+    end
+  end
+end
 ```
 
 ## Contributing
