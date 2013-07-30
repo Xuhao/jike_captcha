@@ -5,6 +5,8 @@
 [![Coverage Status](https://coveralls.io/repos/Xuhao/jike_captcha/badge.png?branch=master)](https://coveralls.io/r/Xuhao/jike_captcha?branch=master)
 [![Gem Version](https://badge.fury.io/rb/jike_captcha.png)](http://badge.fury.io/rb/jike_captcha)
 
+![Jike captcha screen shot](https://raw.github.com/Xuhao/jike_captcha/master/example/ScreenShot.png "Jike captcha screen shot")
+
 Captcha form [Jike API][jike_api_site], It's very simple but it's light weight and very fast. No need generate captcha image locally, so you need not install any software for it, such as ImageMagick. It get captcha form a fast and stable service clusters. It's good choice for Captcha, try it!
 
 ## Installation
