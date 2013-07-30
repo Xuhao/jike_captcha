@@ -12,6 +12,11 @@ require 'action_view'
 module Jike
   module Captcha
     module Helpers
+      class AppKeyMissingError < StandardError
+        def initialize
+          super 'Please set app_key first! Checkout document to see how to do that.'
+        end
+      end
       # ActionView helpers and helper methods that can be called on Jike::Captcha::Helpers
       #
       # Example:
@@ -137,6 +142,7 @@ module Jike
         end
 
         def get(url)
+          raise AppKeyMissingError if Jike::Captcha.app_key.blank?
           HTTParty.get(url).body
         end
 
