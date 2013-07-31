@@ -13,5 +13,7 @@ describe Jike::Captcha::Validation do
 
   it 'should check the given captcha value and id and return boolean' do
     Jike::Captcha::Validation.captcha_validate(params1[:jike_captcha_value], params1[:jike_captcha_id]).class.should satisfy{|k| [TrueClass, FalseClass].include?(k)}
+    Jike::Captcha::Helpers.stub(:send).and_raise
+    Jike::Captcha::Validation.captcha_validate(params1[:jike_captcha_value], params1[:jike_captcha_id]).should be_false
   end
 end
