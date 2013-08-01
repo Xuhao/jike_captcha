@@ -16,7 +16,7 @@ describe Jike::Captcha::Helpers do
     captcha_id.include?("captcha_id=").should be_false
     Jike::Captcha.app_key = nil
     Jike::Captcha::Helpers.reset_captcha!
-    expect { Jike::Captcha::Helpers.captcha_id }.to raise_error(Jike::Captcha::Helpers::AppKeyMissingError, "Please set app_key first! Checkout document to see how to do that.")
+    expect { Jike::Captcha::Helpers.captcha_id }.to raise_error(Jike::Captcha::Helpers::AppKeyMissingError, "Please set Jike app_key first! Check out jike_captcha document to see how to do that.")
   end
 
   it 'should return binary data for captcha image when all captcha_image_data' do
@@ -24,7 +24,7 @@ describe Jike::Captcha::Helpers do
     image_data.encoding.name.should eq('ASCII-8BIT')
     Jike::Captcha.app_key = nil
     Jike::Captcha::Helpers.reset_captcha!
-    expect { Jike::Captcha::Helpers.captcha_image_data }.to raise_error(Jike::Captcha::Helpers::AppKeyMissingError, "Please set app_key first! Checkout document to see how to do that.")
+    expect { Jike::Captcha::Helpers.captcha_image_data }.to raise_error(Jike::Captcha::Helpers::AppKeyMissingError, "Please set Jike app_key first! Check out jike_captcha document to see how to do that.")
   end
 
   it 'should return data url for captcha image when call captcha_image_data_url' do

@@ -14,7 +14,7 @@ module Jike
     module Helpers
       class AppKeyMissingError < StandardError
         def initialize
-          super 'Please set app_key first! Checkout document to see how to do that.'
+          super 'Please set Jike app_key first! Check out jike_captcha document to see how to do that.'
         end
       end
       # ActionView helpers and helper methods that can be called on Jike::Captcha::Helpers
