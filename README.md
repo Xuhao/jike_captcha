@@ -159,6 +159,10 @@ class UsersController < ApplicationController
 end
 ```
 
+#### 4. More details
+
+Check out [JikeCaptcha Wiki][jike_captcha_wiki] to get more details for usage.
+
 ## Contributing
 
 1. Fork it
@@ -168,3 +172,4 @@ end
 5. Create new Pull Request
 
 [jike_api_site]: http://open.jike.com/api/detailView?group_id=1
+[jike_captcha_wiki]: https://github.com/Xuhao/jike_captcha/wiki
