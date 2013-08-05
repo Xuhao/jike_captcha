@@ -8,7 +8,12 @@ module Jike
     CAPTCHA_VALIDATE_URL = 'http://api.jike.com/captcha/validation'
 
     # There two way to set jike app key
-    # TODO: detail for those tow ways
+    #
+    # One: create a file in config/initializers/jike_captcha.rb with below code:
+    #   Jike::Captcha.app_key = "<your_app_key>"
+    #
+    # Two: set app_key in config/application.rb:
+    #   config.jike_app_key = '<your_app_key>'
     def self.app_key
       @app_key ||= begin
         if Module.const_defined?('Rails')
