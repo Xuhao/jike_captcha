@@ -161,7 +161,7 @@ end
 
 #### 4. More details
 
-Check out [JikeCaptcha Wiki][jike_captcha_wiki] to get more details for usage.
+[JikeCaptcha Wiki][jike_captcha_wiki]
 
 ## Contributing
 
