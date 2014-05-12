@@ -1,3 +1,7 @@
+# !!! WARNNING !!!
+
+### Jike API has shut down, `jike_captcha` gem has been yanked!
+
 # JikeCaptcha
 
 [![Build Status](https://travis-ci.org/Xuhao/jike_captcha.png?branch=master)](https://travis-ci.org/Xuhao/jike_captcha)
